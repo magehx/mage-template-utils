@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace MageHx\MageTemplateUtils\Plugin\TemplateEngine;
 
 use Magento\Framework\Escaper;
+use Magento\Framework\Phrase;
 use Magento\Framework\View\Element\BlockInterface;
 use Magento\Framework\View\TemplateEngine\Php as TemplateEnginePhp;
 
@@ -25,7 +26,7 @@ class InjectEscapeUtils
     ): array {
         // Add $eHtml global variable to all templates
         if (!isset($dictionary['eHtml'])) {
-            $dictionary['eHtml'] = fn(string $value) => $this->escaper->escapeHtml($value);
+            $dictionary['eHtml'] = fn(string|Phrase $value) => $this->escaper->escapeHtml($value);
         }
         // Add $eUrl global variable to all templates
         if (!isset($dictionary['eUrl'])) {
@@ -37,7 +38,7 @@ class InjectEscapeUtils
         }
         // Add $eHtmlAttr global variable to all templates
         if (!isset($dictionary['eHtmlAttr'])) {
-            $dictionary['eHtmlAttr'] = fn(string $value) => $this->escaper->escapeHtmlAttr($value);
+            $dictionary['eHtmlAttr'] = fn(string|Phrase $value) => $this->escaper->escapeHtmlAttr($value);
         }
 
         return [$block, $fileName, $dictionary];
