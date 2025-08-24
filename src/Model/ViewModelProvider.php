@@ -10,10 +10,19 @@ use RuntimeException;
 
 class ViewModelProvider
 {
-    public function __construct(private readonly ObjectManagerInterface $objectManager)
-    {
+    public function __construct(
+        private readonly ObjectManagerInterface $objectManager
+    ) {
     }
 
+    /**
+     * Returns view model instance.
+     *
+     * @template T of ArgumentInterface
+     * @param class-string<T> $viewModelName
+     * @return T
+     * @throws RuntimeException
+     */
     public function get(string $viewModelName): ArgumentInterface
     {
         $viewModel = $this->objectManager->get($viewModelName);

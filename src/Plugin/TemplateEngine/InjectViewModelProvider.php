@@ -10,8 +10,9 @@ use MageHx\MageTemplateUtils\Model\ViewModelProvider;
 
 class InjectViewModelProvider
 {
-    public function __construct(private readonly ViewModelProvider $viewModelProvider)
-    {
+    public function __construct(
+        private readonly ViewModelProvider $viewModelProvider,
+    ) {
     }
 
     /**
@@ -25,8 +26,7 @@ class InjectViewModelProvider
     ): array {
         // Add $viewModelProvider global variable to all templates
         if (!isset($dictionary['viewModelProvider'])) {
-            $dictionary['viewModelProvider'] = fn(string $viewModelName) =>
-                $this->viewModelProvider->get($viewModelName);
+            $dictionary['viewModelProvider'] = $this->viewModelProvider;
         }
 
         return [$block, $fileName, $dictionary];

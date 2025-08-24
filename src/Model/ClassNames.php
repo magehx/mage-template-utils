@@ -8,8 +8,9 @@ use Magento\Framework\Escaper;
 
 class ClassNames
 {
-    public function __construct(private readonly Escaper $escaper)
-    {
+    public function __construct(
+        private readonly Escaper $escaper,
+    ) {
     }
 
     /**

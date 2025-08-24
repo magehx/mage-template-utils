@@ -10,17 +10,17 @@ A Magento 2 module that introduces convenient global utilities for use in `.phtm
 
 Use simple closure aliases instead of long `$escaper` method calls:
 
-| Alias          | Equivalent                     |
-|----------------|--------------------------------|
-| `$eHtml()`     | `$escaper->escapeHtml()`       |
-| `$eJs()`       | `$escaper->escapeJs()`         |
-| `$eUrl()`      | `$escaper->escapeUrl()`        |
-| `$eHtmlAttr()` | `$escaper->escapeHtmlAttr()`   |
+| Alias              | Equivalent                     |
+|--------------------|--------------------------------|
+| `$esc->html()`     | `$escaper->escapeHtml()`       |
+| `$esc->js()`       | `$escaper->escapeJs()`         |
+| `$esc->url()`      | `$escaper->escapeUrl()`        |
+| `$esc->htmlAttr()` | `$escaper->escapeHtmlAttr()`   |
 
 **Example:**
 
 ```php
-<?= $eHtml(__('Hello world!')) ?>
+<?= $esc->html(__('Hello world!')) ?>
 ````
 
 Instead of:
@@ -37,10 +37,11 @@ Fetch a ViewModel instance directly inside a `.phtml` file without having to dec
 ```php
 <?php
 use Namespace\Module\ViewModel\YourViewModel;
+use MageHx\MageTemplateUtils\Model\ViewModelProvider;
 
-/** @var Closure $viewModelProvider */
+/** @var ViewModelProvider $viewModelProvider */
 
-$viewModel = $viewModelProvider(YourViewModel::class);
+$viewModel = $viewModelProvider->get(YourViewModel::class);
 ?>
 ```
 ---
@@ -65,7 +66,7 @@ Simple, secure, and saves time.
 Generate a valid CSP nonce for inline scripts:
 
 ```php
-<script nonce="<?= $eHtmlAttr($nonce) ?>">
+<script nonce="<?= $esc->htmlAttr($nonce) ?>">
     // safe inline script
 </script>
 ```
