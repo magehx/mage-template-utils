@@ -2,7 +2,6 @@
     "name": "magehx/mage-template-utils",
     "description": "Magento 2 module that provides powerful global utility features to the templates.",
     "type": "magento2-module",
-    "version": "1.0.1",
     "license": "MIT",
     "minimum-stability": "dev",
     "prefer-stable": true,
